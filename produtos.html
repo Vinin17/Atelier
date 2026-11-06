@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos · ATELIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
+</head>
+<body data-pagina="produtos">
+  <header class="topo">
+    <button class="icone" onclick="alternarMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button>
+    <a href="index.html" class="marca">ATELIER<span>.</span></a>
+    <a href="checkout.html" class="icone sacola" aria-label="Sacola">
+      <i class="bi bi-bag"></i>
+      <span class="contador" id="contador">0</span>
+    </a>
+  </header>
+
+  <nav class="menu" id="menu">
+    <form action="produtos.html">
+      <input type="search" name="busca" placeholder="Buscar coleção, marca ou referência">
+    </form>
+    <a class="link" href="index.html">Início</a>
+    <a class="link" href="produtos.html?cat=novidades">Novidades</a>
+    <a class="link" href="produtos.html?cat=relogios">Relógios</a>
+    <a class="link" href="produtos.html?cat=acessorios">Acessórios</a>
+    <a class="link" href="produtos.html?cat=ofertas">Ofertas</a>
+    <a class="link" href="conta.html">Minha conta</a>
+    <p class="idioma">Brasil · PT</p>
+  </nav>
+
+  <main>
+    <section class="cabecalho-pagina">
+      <span class="rotulo" id="rotulo"></span>
+      <h1 id="titulo"></h1>
+      <p class="suave" id="texto"></p>
+    </section>
+
+    <div class="barra">
+      <span id="contagem"></span>
+      <button onclick="alternarFiltro()"><i class="bi bi-sliders"></i> Filtrar</button>
+      <label for="ordem" style="margin:0; text-transform:none; letter-spacing:0">Ordenar:
+        <select id="ordem" onchange="desenhar()">
+          <option value="relevancia">Relevância</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="painel" id="filtro" hidden>
+      <label for="precoMax" id="precoTexto" style="margin-top:0"></label>
+      <input type="range" id="precoMax" min="500" max="30000" step="500" value="30000" oninput="desenhar()">
+    </div>
+
+    <div class="grade" id="lista"></div>
+    <button class="botao claro" id="maisPecas" onclick="carregarMais()" style="margin-top:24px">Carregar mais</button>
+  </main>
+
+  <nav class="rodape-nav">
+    <a href="index.html"><i class="bi bi-house"></i>Início</a>
+    <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
+    <a href="conta.html"><i class="bi bi-person"></i>Conta</a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

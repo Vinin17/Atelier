@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar · ATELIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
+</head>
+<body data-pagina="login">
+  <header class="topo">
+    <button class="icone" onclick="alternarMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button>
+    <a href="index.html" class="marca">ATELIER<span>.</span></a>
+    <a href="checkout.html" class="icone sacola" aria-label="Sacola">
+      <i class="bi bi-bag"></i>
+      <span class="contador" id="contador">0</span>
+    </a>
+  </header>
+
+  <nav class="menu" id="menu">
+    <form action="produtos.html">
+      <input type="search" name="busca" placeholder="Buscar coleção, marca ou referência">
+    </form>
+    <a class="link" href="index.html">Início</a>
+    <a class="link" href="produtos.html?cat=novidades">Novidades</a>
+    <a class="link" href="produtos.html?cat=relogios">Relógios</a>
+    <a class="link" href="produtos.html?cat=acessorios">Acessórios</a>
+    <a class="link" href="produtos.html?cat=ofertas">Ofertas</a>
+    <a class="link" href="conta.html">Minha conta</a>
+    <p class="idioma">Brasil · PT</p>
+  </nav>
+
+  <main class="login">
+    <span class="rotulo">Círculo Atelier</span>
+    <h1>Bem-vindo de volta</h1>
+    <p class="suave">Entre para acompanhar pedidos, favoritos e lançamentos exclusivos.</p>
+
+    <form onsubmit="entrar(event)" novalidate>
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="nome@exemplo.com">
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="••••••••••">
+
+      <div class="extras">
+        <label><input type="checkbox"> Lembrar de mim</label>
+        <a href="login.html">Esqueci a senha</a>
+      </div>
+
+      <p class="erro-texto" id="erro"></p>
+      <button class="botao" type="submit">Entrar</button>
+    </form>
+
+    <p class="suave" style="margin-top:24px; text-align:center">Ainda não faz parte? <a href="login.html"><strong>Criar conta</strong></a></p>
+  </main>
+
+  <nav class="rodape-nav">
+    <a href="index.html"><i class="bi bi-house"></i>Início</a>
+    <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
+    <a href="conta.html" class="ativo"><i class="bi bi-person"></i>Conta</a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
