@@ -1,4 +1,4 @@
-const extensao = '.jpg';
+const extensao = '.svg';
 
 const produtos = [
   { id: 1, imagem: 'nocturne-39', marca: 'Aureus', nome: 'Nocturne 39', preco: 8490, antigo: 9990, desc: 15, tipo: 'relogio', novo: false, cor: 'c1' },
