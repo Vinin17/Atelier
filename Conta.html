@@ -6,133 +6,90 @@
   <title>Minha conta · ATELIER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
 </head>
 <body data-pagina="conta">
   <header class="topo">
-    <button class="icone" onclick="alternarMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button>
+    <div class="esquerda"><button class="icone" onclick="abrirMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button></div>
     <a href="index.html" class="marca">ATELIER<span>.</span></a>
-    <a href="checkout.html" class="icone sacola" aria-label="Sacola">
-      <i class="bi bi-bag"></i>
-      <span class="contador" id="contador">0</span>
-    </a>
+    <div class="direita">
+      <button class="icone" onclick="abrirMenu()" aria-label="Buscar"><i class="bi bi-search"></i></button>
+      <a href="favoritos.html" class="icone so-desktop" aria-label="Favoritos"><i class="bi bi-heart"></i></a>
+      <a href="conta.html" class="icone so-desktop" aria-label="Minha conta"><i class="bi bi-person"></i></a>
+      <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i><span class="contador">0</span></a>
+    </div>
   </header>
-
-  <nav class="menu" id="menu">
-    <form action="produtos.html">
-      <input type="search" name="busca" placeholder="Buscar coleção, marca ou referência">
+  <div class="menu-tela" id="menu" hidden>
+    <header class="topo escuro">
+      <div class="esquerda"><button class="icone" onclick="fecharMenu()" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button></div>
+      <a href="index.html" class="marca">ATELIER<span>.</span></a>
+      <div class="direita">
+        <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i></a>
+      </div>
+    </header>
+    <form class="menu-busca" action="produtos.html">
+      <div class="busca"><i class="bi bi-search"></i><input type="search" name="busca" placeholder="Buscar coleção, marca ou referência"></div>
     </form>
-    <a class="link" href="index.html">Início</a>
-    <a class="link" href="produtos.html?cat=novidades">Novidades</a>
-    <a class="link" href="produtos.html?cat=relogios">Relógios</a>
-    <a class="link" href="produtos.html?cat=acessorios">Acessórios</a>
-    <a class="link" href="produtos.html?cat=ofertas">Ofertas</a>
-    <a class="link" href="conta.html">Minha conta</a>
-    <p class="idioma">Brasil · PT</p>
-  </nav>
+    <nav class="menu-lista">
+      <a href="index.html"><small>01</small>Início<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=novidades"><small>02</small>Novidades<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=relogios"><small>03</small>Relógios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=acessorios"><small>04</small>Acessórios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=ofertas"><small>05</small>Ofertas<i class="bi bi-arrow-up-right"></i></a>
+    </nav>
+    <a class="jornal" href="produtos.html?cat=novidades">
+      <img src="img/Heritage chrono.png" alt="" onerror="this.remove()">
+      <div><small>Atelier Journal · 08</small><h3>A arte invisível de um movimento perfeito</h3></div>
+      <span>Ler artigo <i class="bi bi-arrow-right"></i></span>
+    </a>
+    <div class="menu-rodape">
+      <a href="conta.html"><i class="bi bi-person"></i> Minha conta</a>
+      <span>Brasil · PT <i class="bi bi-chevron-down" style="color:#a09e97"></i></span>
+    </div>
+  </div>
 
-  <main>
+  <main class="estreito">
     <section class="perfil">
       <div class="avatar">MA</div>
       <div>
         <span class="rotulo">Cliente desde 2023</span>
         <h1>Marina Albuquerque</h1>
-        <p class="suave">marina.albuquerque@email.com</p>
+        <p>marina.albuquerque@email.com<br>+55 (51) 99876-5432</p>
       </div>
     </section>
 
-    <div class="abas">
-      <button id="btn-dados" onclick="mostrarAba('dados')">Dados</button>
-      <button id="btn-pedidos" onclick="mostrarAba('pedidos')">Pedidos</button>
-      <button id="btn-config" onclick="mostrarAba('config')">Configurações</button>
-    </div>
+    <button class="botao contorno" id="btnEditar" onclick="editarDados()"><i class="bi bi-pencil"></i> Editar informações</button>
 
-    <section id="aba-dados">
-      <label for="c-nome">Nome completo</label>
-      <input type="text" id="c-nome" value="Marina Albuquerque" disabled>
-      <label for="c-email">E-mail</label>
-      <input type="text" id="c-email" value="marina.albuquerque@email.com" disabled>
-      <label for="c-tel">Telefone</label>
-      <input type="text" id="c-tel" value="+55 (51) 99876-5432" disabled>
-      <label for="c-cpf">CPF</label>
-      <input type="text" id="c-cpf" value="•••.456.789-••" disabled>
-      <label for="c-nasc">Data de nascimento</label>
-      <input type="text" id="c-nasc" value="14 / 03 / 1989" disabled>
-
-      <button class="botao claro" id="btnEditar" onclick="editarDados()" style="margin-top:20px">Editar informações</button>
-      <button class="botao" onclick="sair()" style="margin-top:10px">Sair da conta</button>
+    <section id="dados" style="margin-top:30px">
+      <span class="rotulo">Dados cadastrais</span>
+      <h2>Informações pessoais</h2>
+      <div class="lista-dados">
+        <div class="dado"><div><small>Nome completo</small><input type="text" id="d1" value="Marina Albuquerque" disabled></div><button onclick="editarCampo('d1')" aria-label="Editar"><i class="bi bi-pencil"></i></button></div>
+        <div class="dado"><div><small>E-mail</small><input type="text" id="d2" value="marina.albuquerque@email.com" disabled></div><button onclick="editarCampo('d2')" aria-label="Editar"><i class="bi bi-pencil"></i></button></div>
+        <div class="dado"><div><small>Telefone</small><input type="text" id="d3" value="+55 (51) 99876-5432" disabled></div><button onclick="editarCampo('d3')" aria-label="Editar"><i class="bi bi-pencil"></i></button></div>
+        <div class="dado"><div><small>CPF</small><input type="text" id="d4" value="•••.456.789-••" disabled></div><button onclick="editarCampo('d4')" aria-label="Editar"><i class="bi bi-pencil"></i></button></div>
+        <div class="dado"><div><small>Data de nascimento</small><input type="text" id="d5" value="14 / 03 / 1989" disabled></div><button onclick="editarCampo('d5')" aria-label="Editar"><i class="bi bi-pencil"></i></button></div>
+      </div>
     </section>
 
-    <section id="aba-pedidos" hidden>
-      <p class="suave" style="margin-bottom:12px">3 pedidos realizados</p>
-      <div class="filtros">
-        <button class="ativa" onclick="filtrarPedidos('todos', this)">Todos</button>
-        <button onclick="filtrarPedidos('andamento', this)">Em andamento</button>
-        <button onclick="filtrarPedidos('entregue', this)">Entregues</button>
-      </div>
-
-      <article class="pedido" data-status="andamento">
-        <header><span>Pedido nº AT-20418 · 24 set 2026</span><span class="status">Em trânsito</span></header>
-        <small class="rotulo">Aureus</small>
-        <h3>Nocturne 39</h3>
-        <p>R$ 8.490</p>
-        <details><summary>Ver pedido</summary><p>1 item · Chegada em 3 dias</p></details>
-      </article>
-
-      <article class="pedido" data-status="entregue">
-        <header><span>Pedido nº AT-19772 · 18 ago 2026</span><span class="status">Entregue</span></header>
-        <small class="rotulo">Montre Atelier</small>
-        <h3>Grande Réserve</h3>
-        <p>R$ 12.800</p>
-        <details><summary>Ver pedido</summary><p>1 item · Entregue em 22 ago</p></details>
-      </article>
-
-      <article class="pedido" data-status="entregue">
-        <header><span>Pedido nº AT-18305 · 03 jun 2026</span><span class="status">Entregue</span></header>
-        <small class="rotulo">Edição limitada</small>
-        <h3>Calibre 01</h3>
-        <p>R$ 21.900</p>
-        <details><summary>Ver pedido</summary><p>1 item · Entregue em 09 jun</p></details>
-      </article>
-
-      <p class="suave" style="margin-top:16px">Precisa de ajuda com um pedido? Fale com o concierge.</p>
-    </section>
-
-    <section id="aba-config" hidden>
-      <span class="rotulo">Suas preferências</span>
-      <h2 style="font-size:26px; margin:4px 0 16px">Configurações da conta</h2>
-
-      <h3 style="font-size:20px">Aparência</h3>
-      <p class="suave">Escolha como você prefere ver a ATELIER.</p>
-      <div class="temas">
-        <button class="tema claro" data-tema="claro" onclick="mudarTema('claro')">Modo claro</button>
-        <button class="tema escuro" data-tema="escuro" onclick="mudarTema('escuro')">Modo escuro</button>
-      </div>
-      <p class="suave" id="temaAtual"></p>
-
-      <h3 style="font-size:20px; margin-top:24px">Notificações</h3>
-      <div class="preferencia">
-        <span>Atualizações dos pedidos<small>Acompanhe o pagamento, o envio e a entrega.</small></span>
-        <input type="checkbox" checked>
-      </div>
-      <div class="preferencia">
-        <span>Novidades e ofertas<small>Receba lançamentos e seleções especiais.</small></span>
-        <input type="checkbox">
-      </div>
-
-      <h3 style="font-size:20px; margin-top:24px">Idioma</h3>
-      <select>
-        <option>Português (Brasil)</option>
-        <option>English</option>
-        <option>Español</option>
-      </select>
+    <section>
+      <span class="rotulo">Gerenciar</span>
+      <h2>Minha conta</h2>
+      <nav class="menu-conta">
+        <a href="#dados"><i class="bi bi-person"></i>Informações pessoais<i class="bi bi-chevron-right seta" style="margin-left:auto"></i></a>
+        <a href="#dados"><i class="bi bi-geo-alt"></i>Endereços<span class="qtd-menu">2</span><i class="bi bi-chevron-right seta"></i></a>
+        <a href="pedidos.html"><i class="bi bi-box-seam"></i>Pedidos<span class="qtd-menu">3</span><i class="bi bi-chevron-right seta"></i></a>
+        <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos<span class="qtd-menu" id="qtdFav"></span><i class="bi bi-chevron-right seta"></i></a>
+        <a href="#dados"><i class="bi bi-credit-card"></i>Métodos de pagamento<span class="qtd-menu">Visa •• 4242</span><i class="bi bi-chevron-right seta"></i></a>
+        <a href="configuracoes.html"><i class="bi bi-sliders"></i>Configurações da conta<i class="bi bi-chevron-right seta" style="margin-left:auto"></i></a>
+      </nav>
+      <button class="sair" onclick="sair()"><i class="bi bi-box-arrow-left"></i>Sair da conta</button>
     </section>
   </main>
-
-  <nav class="rodape-nav">
+  <nav class="abas">
     <a href="index.html"><i class="bi bi-house"></i>Início</a>
     <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
     <a href="conta.html" class="ativo"><i class="bi bi-person"></i>Conta</a>

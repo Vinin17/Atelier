@@ -6,61 +6,77 @@
   <title>ATELIER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="style.css">
   <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
 </head>
 <body data-pagina="home">
   <header class="topo">
-    <button class="icone" onclick="alternarMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button>
+    <div class="esquerda"><button class="icone" onclick="abrirMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button></div>
     <a href="index.html" class="marca">ATELIER<span>.</span></a>
-    <a href="checkout.html" class="icone sacola" aria-label="Sacola">
-      <i class="bi bi-bag"></i>
-      <span class="contador" id="contador">0</span>
-    </a>
+    <div class="direita">
+      <button class="icone" onclick="abrirMenu()" aria-label="Buscar"><i class="bi bi-search"></i></button>
+      <a href="favoritos.html" class="icone so-desktop" aria-label="Favoritos"><i class="bi bi-heart"></i></a>
+      <a href="conta.html" class="icone so-desktop" aria-label="Minha conta"><i class="bi bi-person"></i></a>
+      <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i><span class="contador">0</span></a>
+    </div>
   </header>
-
-  <nav class="menu" id="menu">
-    <form action="produtos.html">
-      <input type="search" name="busca" placeholder="Buscar coleção, marca ou referência">
+  <div class="menu-tela" id="menu" hidden>
+    <header class="topo escuro">
+      <div class="esquerda"><button class="icone" onclick="fecharMenu()" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button></div>
+      <a href="index.html" class="marca">ATELIER<span>.</span></a>
+      <div class="direita">
+        <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i></a>
+      </div>
+    </header>
+    <form class="menu-busca" action="produtos.html">
+      <div class="busca"><i class="bi bi-search"></i><input type="search" name="busca" placeholder="Buscar coleção, marca ou referência"></div>
     </form>
-    <a class="link" href="index.html">Início</a>
-    <a class="link" href="produtos.html?cat=novidades">Novidades</a>
-    <a class="link" href="produtos.html?cat=relogios">Relógios</a>
-    <a class="link" href="produtos.html?cat=acessorios">Acessórios</a>
-    <a class="link" href="produtos.html?cat=ofertas">Ofertas</a>
-    <a class="link" href="conta.html">Minha conta</a>
-    <p class="idioma">Brasil · PT</p>
-  </nav>
+    <nav class="menu-lista">
+      <a href="index.html" class="atual"><small>01</small>Início<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=novidades"><small>02</small>Novidades<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=relogios"><small>03</small>Relógios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=acessorios"><small>04</small>Acessórios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=ofertas"><small>05</small>Ofertas<i class="bi bi-arrow-up-right"></i></a>
+    </nav>
+    <a class="jornal" href="produtos.html?cat=novidades">
+      <img src="img/Heritage chrono.png" alt="" onerror="this.remove()">
+      <div><small>Atelier Journal · 08</small><h3>A arte invisível de um movimento perfeito</h3></div>
+      <span>Ler artigo <i class="bi bi-arrow-right"></i></span>
+    </a>
+    <div class="menu-rodape">
+      <a href="conta.html"><i class="bi bi-person"></i> Minha conta</a>
+      <span>Brasil · PT <i class="bi bi-chevron-down" style="color:#a09e97"></i></span>
+    </div>
+  </div>
 
   <main>
     <section class="banner">
-      <img class="banner-img" src="img/banner.svg" alt="" onerror="this.remove()">
+      <img src="img/Banner.png" alt="" onerror="this.remove()">
       <small>Edição limitada · 01/100</small>
       <h1>O tempo, em sua forma mais rara.</h1>
       <a href="produtos.html?cat=relogios">Conheça a coleção <i class="bi bi-arrow-right"></i></a>
     </section>
 
-    <section class="atalhos">
+    <div class="atalhos">
       <a href="produtos.html?cat=relogios"><i class="bi bi-speedometer2"></i>Clássicos</a>
       <a href="produtos.html?cat=relogios"><i class="bi bi-activity"></i>Esportivos</a>
       <a href="produtos.html?cat=relogios"><i class="bi bi-gear"></i>Automáticos</a>
-    </section>
+    </div>
 
-    <section>
+    <section style="margin-top:28px">
       <span class="rotulo">Seleção da semana</span>
       <div class="titulo-linha">
         <h2>Peças em destaque</h2>
         <a href="produtos.html?cat=novidades">Ver todos</a>
       </div>
-      <div class="grade" id="destaques"></div>
+      <div class="grade destaques" id="destaques"></div>
     </section>
 
-    <p class="faixa"><span><i class="bi bi-truck"></i> Entrega expressa segurada</span><span>5 anos de garantia</span></p>
+    <p class="faixa"><span><i class="bi bi-truck"></i>Entrega expressa segurada</span><em></em><span>5 anos de garantia</span></p>
   </main>
-
-  <nav class="rodape-nav">
+  <nav class="abas">
     <a href="index.html" class="ativo"><i class="bi bi-house"></i>Início</a>
     <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
     <a href="conta.html"><i class="bi bi-person"></i>Conta</a>

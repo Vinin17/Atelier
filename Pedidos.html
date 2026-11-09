@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos · ATELIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
+</head>
+<body data-pagina="pedidos">
+  <header class="topo">
+    <div class="esquerda"><button class="icone" onclick="history.back()" aria-label="Voltar"><i class="bi bi-chevron-left"></i></button></div>
+    <a href="index.html" class="marca">ATELIER<span>.</span></a>
+    <div class="direita">
+      
+      <a href="favoritos.html" class="icone so-desktop" aria-label="Favoritos"><i class="bi bi-heart"></i></a>
+      <a href="conta.html" class="icone so-desktop" aria-label="Minha conta"><i class="bi bi-person"></i></a>
+      <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i><span class="contador">0</span></a>
+    </div>
+  </header>
+  <div class="menu-tela" id="menu" hidden>
+    <header class="topo escuro">
+      <div class="esquerda"><button class="icone" onclick="fecharMenu()" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button></div>
+      <a href="index.html" class="marca">ATELIER<span>.</span></a>
+      <div class="direita">
+        <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i></a>
+      </div>
+    </header>
+    <form class="menu-busca" action="produtos.html">
+      <div class="busca"><i class="bi bi-search"></i><input type="search" name="busca" placeholder="Buscar coleção, marca ou referência"></div>
+    </form>
+    <nav class="menu-lista">
+      <a href="index.html"><small>01</small>Início<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=novidades"><small>02</small>Novidades<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=relogios"><small>03</small>Relógios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=acessorios"><small>04</small>Acessórios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=ofertas"><small>05</small>Ofertas<i class="bi bi-arrow-up-right"></i></a>
+    </nav>
+    <a class="jornal" href="produtos.html?cat=novidades">
+      <img src="img/Heritage chrono.png" alt="" onerror="this.remove()">
+      <div><small>Atelier Journal · 08</small><h3>A arte invisível de um movimento perfeito</h3></div>
+      <span>Ler artigo <i class="bi bi-arrow-right"></i></span>
+    </a>
+    <div class="menu-rodape">
+      <a href="conta.html"><i class="bi bi-person"></i> Minha conta</a>
+      <span>Brasil · PT <i class="bi bi-chevron-down" style="color:#a09e97"></i></span>
+    </div>
+  </div>
+
+  <main class="estreito">
+    <section class="cabecalho-pagina" style="margin-bottom:0">
+      <span class="rotulo">Minha conta</span>
+      <h1>Pedidos</h1>
+      <p>3 pedidos realizados</p>
+    </section>
+
+    <div class="filtros">
+      <button class="ativa" onclick="filtrarPedidos('todos', this)">Todos</button>
+      <button onclick="filtrarPedidos('andamento', this)">Em andamento</button>
+      <button onclick="filtrarPedidos('entregue', this)">Entregues</button>
+    </div>
+
+    <article class="pedido" data-status="andamento">
+      <div class="pedido-topo">
+        <div><strong>Pedido nº AT-20418</strong><span>24 set 2026</span></div>
+        <span class="status transito">Em trânsito</span>
+      </div>
+      <div class="pedido-corpo">
+        <div class="miniatura"><img src="img/Nocturne 39.png" alt="Nocturne 39" onerror="this.remove()"></div>
+        <div><small>Aureus</small><h3>Nocturne 39</h3><p>R$ 8.490</p></div>
+      </div>
+      <div class="pedido-rodape"><span>1 item · Chegada em 3 dias</span><button onclick="alternarPedido(this)">Ver pedido →</button></div>
+      <p class="info" hidden>Enviado por entrega expressa segurada. Código de rastreio AT20418BR.</p>
+    </article>
+
+    <article class="pedido" data-status="entregue">
+      <div class="pedido-topo">
+        <div><strong>Pedido nº AT-19772</strong><span>18 ago 2026</span></div>
+        <span class="status">Entregue</span>
+      </div>
+      <div class="pedido-corpo">
+        <div class="miniatura"><img src="img/Grande reserve.png" alt="Grande Réserve" onerror="this.remove()"></div>
+        <div><small>Montre Atelier</small><h3>Grande Réserve</h3><p>R$ 12.800</p></div>
+      </div>
+      <div class="pedido-rodape"><span>1 item · Entregue em 22 ago</span><button onclick="alternarPedido(this)">Ver pedido →</button></div>
+      <p class="info" hidden>Entregue e assinado na portaria em 22 de agosto.</p>
+    </article>
+
+    <article class="pedido" data-status="entregue">
+      <div class="pedido-topo">
+        <div><strong>Pedido nº AT-18305</strong><span>03 jun 2026</span></div>
+        <span class="status">Entregue</span>
+      </div>
+      <div class="pedido-corpo">
+        <div class="miniatura"><img src="img/Calibre 01.png" alt="Calibre 01" onerror="this.remove()"></div>
+        <div><small>Edição limitada</small><h3>Calibre 01</h3><p>R$ 21.900</p></div>
+      </div>
+      <div class="pedido-rodape"><span>1 item · Entregue em 09 jun</span><button onclick="alternarPedido(this)">Ver pedido →</button></div>
+      <p class="info" hidden>Entregue em mãos ao titular da compra em 9 de junho.</p>
+    </article>
+
+    <p class="ajuda">Precisa de ajuda com um pedido? Fale com o concierge</p>
+  </main>
+  <nav class="abas">
+    <a href="index.html"><i class="bi bi-house"></i>Início</a>
+    <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
+    <a href="conta.html" class="ativo"><i class="bi bi-person"></i>Conta</a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

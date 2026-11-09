@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações · ATELIER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.dataset.tema = localStorage.getItem('tema') || 'claro';</script>
+</head>
+<body data-pagina="config">
+  <header class="topo">
+    <div class="esquerda"><button class="icone" onclick="abrirMenu()" aria-label="Abrir menu"><i class="bi bi-list"></i></button></div>
+    <a href="index.html" class="marca">ATELIER<span>.</span></a>
+    <div class="direita">
+      <button class="icone" onclick="abrirMenu()" aria-label="Buscar"><i class="bi bi-search"></i></button>
+      <a href="favoritos.html" class="icone so-desktop" aria-label="Favoritos"><i class="bi bi-heart"></i></a>
+      <a href="conta.html" class="icone so-desktop" aria-label="Minha conta"><i class="bi bi-person"></i></a>
+      <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i><span class="contador">0</span></a>
+    </div>
+  </header>
+  <div class="menu-tela" id="menu" hidden>
+    <header class="topo escuro">
+      <div class="esquerda"><button class="icone" onclick="fecharMenu()" aria-label="Fechar menu"><i class="bi bi-x-lg"></i></button></div>
+      <a href="index.html" class="marca">ATELIER<span>.</span></a>
+      <div class="direita">
+        <a href="checkout.html" class="icone" aria-label="Sacola"><i class="bi bi-bag"></i></a>
+      </div>
+    </header>
+    <form class="menu-busca" action="produtos.html">
+      <div class="busca"><i class="bi bi-search"></i><input type="search" name="busca" placeholder="Buscar coleção, marca ou referência"></div>
+    </form>
+    <nav class="menu-lista">
+      <a href="index.html"><small>01</small>Início<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=novidades"><small>02</small>Novidades<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=relogios"><small>03</small>Relógios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=acessorios"><small>04</small>Acessórios<i class="bi bi-arrow-up-right"></i></a>
+      <a href="produtos.html?cat=ofertas"><small>05</small>Ofertas<i class="bi bi-arrow-up-right"></i></a>
+    </nav>
+    <a class="jornal" href="produtos.html?cat=novidades">
+      <img src="img/Heritage chrono.png" alt="" onerror="this.remove()">
+      <div><small>Atelier Journal · 08</small><h3>A arte invisível de um movimento perfeito</h3></div>
+      <span>Ler artigo <i class="bi bi-arrow-right"></i></span>
+    </a>
+    <div class="menu-rodape">
+      <a href="conta.html"><i class="bi bi-person"></i> Minha conta</a>
+      <span>Brasil · PT <i class="bi bi-chevron-down" style="color:#a09e97"></i></span>
+    </div>
+  </div>
+
+  <main class="estreito">
+    <a href="conta.html" class="voltar-link"><i class="bi bi-arrow-left"></i> Minha conta</a>
+    <section class="cabecalho-pagina" style="margin-bottom:0">
+      <span class="rotulo">Suas preferências</span>
+      <h1 style="font-size:31px">Configurações da conta</h1>
+      <p>Uma experiência ATELIER do seu jeito.</p>
+    </section>
+
+    <section class="aparencia">
+      <h2 style="font-size:23px">Aparência</h2>
+      <p>Escolha como você prefere ver a ATELIER.</p>
+      <div class="temas">
+        <button class="tema" data-tema="claro" onclick="mudarTema('claro')">
+          <div class="mini claro"><b>ATELIER</b><i></i><i></i></div>
+          <span class="tema-nome"><i class="bi bi-sun"></i>Modo claro<span class="radio"></span></span>
+        </button>
+        <button class="tema" data-tema="escuro" onclick="mudarTema('escuro')">
+          <div class="mini escuro"><b>ATELIER</b><i></i><i></i></div>
+          <span class="tema-nome"><i class="bi bi-moon"></i>Modo escuro<span class="radio"></span></span>
+        </button>
+      </div>
+      <p class="tema-ok"><i class="bi bi-check2"></i><span id="temaAtual"></span></p>
+    </section>
+
+    <section>
+      <h2>Notificações</h2>
+      <div class="preferencia">
+        <div><strong>Atualizações dos pedidos</strong><small>Acompanhe o pagamento, o envio e a entrega.</small></div>
+        <div class="interruptor"><input type="checkbox" checked onchange="alternarNotificacao(this)"><span>Ativadas</span></div>
+      </div>
+      <div class="preferencia">
+        <div><strong>Novidades e ofertas</strong><small>Receba lançamentos e seleções especiais.</small></div>
+        <div class="interruptor"><input type="checkbox" onchange="alternarNotificacao(this)"><span>Desativadas</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-bottom:14px">Idioma</h2>
+      <div class="seletor">
+        <i class="bi bi-globe2"></i>
+        <select>
+          <option>Português (Brasil)</option>
+          <option>English</option>
+          <option>Español</option>
+        </select>
+        <i class="bi bi-chevron-down seta"></i>
+      </div>
+    </section>
+
+    <section>
+      <h2>Privacidade e segurança</h2>
+      <div class="linha-opcao"><i class="bi bi-lock"></i><div><strong style="font-weight:500">Alterar senha</strong><small>Mantenha o acesso à sua conta protegido.</small></div><i class="bi bi-chevron-right seta"></i></div>
+      <div class="linha-opcao"><i class="bi bi-shield-check"></i><div><strong style="font-weight:500">Gerenciar privacidade</strong><small>Controle seus dados e suas permissões.</small></div><i class="bi bi-chevron-right seta"></i></div>
+    </section>
+  </main>
+  <nav class="abas">
+    <a href="index.html"><i class="bi bi-house"></i>Início</a>
+    <a href="favoritos.html"><i class="bi bi-heart"></i>Favoritos</a>
+    <a href="conta.html" class="ativo"><i class="bi bi-person"></i>Conta</a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
